@@ -23,7 +23,7 @@ The `tcpserverStorage` engine in Multair is a **demonstration storage engine** t
 **Important Notes:**
 
 *   **Not Production-Ready:**  `tcpserverStorage` as provided is a **basic example** and is **not intended for production use** without significant modification and security considerations.
-*   **Requires a TCP Server:**  To use `tcpserverStorage`, you need to have a separate TCP server application running and listening for connections on the specified host and port. A basic example TCP server (`tcp-server-example.js`) is often provided alongside Multair examples to demonstrate this engine.
+*   **Requires a TCP Server:**  To use `tcpserverStorage`, you need to have a separate TCP server application running and listening for connections on the specified host and port. A basic example TCP server (`/examples/tcp-server-example.js`) is often provided alongside Multair examples to demonstrate this engine.
 *   **Basic Functionality:**  The provided `tcpserverStorage` example focuses on streaming the file data over TCP. It does not implement advanced features like:
     *   File metadata transmission over TCP (beyond bytes transferred count).
     *   Error recovery or retry mechanisms for network issues.
