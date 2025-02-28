@@ -75,9 +75,9 @@ Multair, like Multer, utilizes storage engines to control where and how uploaded
 
 Multair currently includes the following built-in storage engines:
 
-*   [Disk Storage](#diskstorage)
+*   [Disk Storage](#storage)
 *   **Memory Storage**
-*   [TCP Server Storage](#tcpserverstorage)
+*   [TCP Server Storage](#storage)
 
 ---
 
