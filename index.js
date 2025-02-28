@@ -17,7 +17,7 @@ const {
     InvalidOptionError,
     MultairError
 } = require('./lib/errors');
-const diskStorage = require('./storage/disk');
+const diskStorage = require('./storage/diskstorage');
 const memoryStorage = require('./storage/memory');
 const tcpserverStorage = require('./storage/tcpserver');
 
