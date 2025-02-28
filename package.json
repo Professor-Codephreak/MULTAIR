@@ -1,0 +1,37 @@
+{
+  "name": "multair",
+  "version": "0.1.1",
+  "description": "AI-enhanced file handling middleware for Node.js, built upon Busboy and inspired by Multer.",
+  "main": "index.js",
+  "keywords": [
+    "multer",
+    "busboy",
+    "file",
+    "upload",
+    "middleware",
+    "form",
+    "multipart",
+    "ai",
+    "enterprise"
+  ],
+  "author": "Gregory L. Magnusson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Professor-Codephreak/MULTAIR"
+  },
+  "bugs": {
+    "url": "https://github.com/Professor-Codephreak/MULTAIR"
+  },
+  "homepage": "https://rage.pythai.net",
+  "dependencies": {
+    "busboy": "^1.6.0", // Use the latest version you tested with
+    "mkdirp": "^1.0.4"  // Use the version you are using
+  },
+  "devDependencies": {
+    "express": "^4.18.2" // Keep express for example and dev, if needed
+  },
+  "engines": {
+    "node": ">=10.16.0" // minimum Node.js version requirement from Busboy
+  }
+}
