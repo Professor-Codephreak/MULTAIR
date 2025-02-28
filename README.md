@@ -65,3 +65,95 @@ MULTAIR: Multipart Upload Layer Transfer Architecture for Intelligent Routing
 *   **Cloud Storage Integrations:**  Future development could include built-in helper functions or storage engine examples for common cloud storage services (S3, Azure Blob, Google Cloud Storage) to simplify enterprise integrations.
 
 `multair` is currently under active development and aims to evolve into a production-ready, enterprise-grade file handling middleware for Node.js applications.
+
+
+## Storage Engines
+
+Multair, like Multer, utilizes storage engines to control where and how uploaded files are stored. Multair provides built-in storage engines and allows you to create custom ones for diverse storage solutions.
+
+### Built-in Storage Engines
+
+Multair currently includes the following built-in storage engines:
+
+*   [Disk Storage](#diskstorage)
+*   **Memory Storage**
+*   [TCP Server Storage](#tcpserverstorage)
+
+---
+
+## Memory Storage `<a name="memorystorage"></a>`
+
+The `memoryStorage` engine stores files **directly in memory** as `Buffer` objects. This engine is best suited for scenarios where:
+
+*   **In-Memory Processing:** You need to immediately process the file data in your application's memory without the overhead of writing to disk. Common use cases include image manipulation, virus scanning, or data transformation pipelines.
+*   **Small Files:** You are handling relatively small files and are confident that memory usage will remain within acceptable limits for your application.
+*   **Temporary File Handling:** You require temporary storage of files during the request lifecycle, and persistence beyond the request is not needed.
+
+**Critical Warning:**  `memoryStorage` has significant **memory implications**.  Storing large files or handling numerous concurrent uploads **will consume substantial memory** and can lead to **application crashes due to out-of-memory errors**.  **Exercise extreme caution when using `memoryStorage` in production**, especially for applications handling uploads from untrusted sources or potentially large files. It is generally recommended to use `diskStorage` for production environments unless you have carefully assessed and mitigated the memory risks.
+
+### Usage
+
+To utilize `memoryStorage`, you need to require the `multair` library and configure it as the `storage` engine in your `multair()` middleware options:
+
+```javascript
+const express = require('express');
+const multair = require('multair');
+
+const app = express();
+
+const upload = multair({
+  storage: multair.memoryStorage()
+});
+
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+  // req.file is the 'avatar' file object with data in memory
+  if (req.file) {
+    console.log('Uploaded file (in memory):', req.file.originalname);
+    // Access the file data as a Buffer:
+    const fileBuffer = req.file.buffer;
+    console.log('File buffer size:', fileBuffer.length, 'bytes');
+    // ... Perform in-memory processing with fileBuffer ...
+  } else {
+    console.log('No file uploaded.');
+  }
+  res.send('File uploaded to memory (or no file uploaded)!');
+});
+
+// ... (rest of your express application)
+Use code with caution.
+Markdown
+In this example, when a user uploads a file with the field name avatar, Multair will use memoryStorage to keep the file data in memory. The req.file object in your route handler will then contain the file's information, including the buffer property holding the file's contents.
+Options
+The memoryStorage() engine does not accept any configuration options in this version of Multair. To use it, simply call the factory function multair.memoryStorage() without passing any arguments.
+File Information (req.file or elements in req.files) when using memoryStorage
+When memoryStorage is active, the file information object (available via req.file for .single() or within req.files arrays for .array(), .fields(), .any()) will include these properties:
+Key	Description	Note
+fieldname	Field name from the HTML form	
+originalname	Original filename as provided by the user's browser	Important: Sanitize this value if used in file paths or URLs.
+encoding	Encoding of the file	e.g., '7bit', 'binary'
+mimetype	MIME type of the file	e.g., 'image/jpeg', 'text/plain'
+size	Size of the file in bytes	
+buffer	Buffer object containing the complete file data.	Specific to memoryStorage. Access the file's binary content directly through this property.
+Example req.file object (when using memoryStorage):
+{
+  "fieldname": "avatar",
+  "originalname": "user-profile.jpg",
+  "encoding": "7bit",
+  "mimetype": "image/jpeg",
+  "size": 256789,
+  "buffer": {
+    "type": "Buffer",
+    "data": [
+      255, 216, 255, 224, 0, 16, 74, 70, 73, 70, 0, 1,
+      1, 0, 0, 1, 0, 1, 0, 0, 255, 219, 0, 67, 0, 8,
+      6, 6, 7, 6, 5, 8, 7, 7, 7, 9, 9, 8, 8, 9, 11,
+      9, 8, 8, 9, 11, 11, 10, 10, 10, 12, 18, 12, 11,
+      12, 12, 12, 18, 16, 16, 19, 24, 16, 19, 22, 22,
+      24, 24, 24, 17, 21, 27, 26, 26, 24, 25, 25, 29,
+      33, 31, 28, 28, 32, 36, 46, 39, 32, 34, 44, 37,
+      40, 51, 41, 48, 51, 49, 49, 64, 55, 49, 58, 55,
+      66, 70, 71, 72, 69, 61, 67, 77, 86, 77, 69, 56,
+      // ... (truncated for brevity) ...
+    ]
+  }
+}
