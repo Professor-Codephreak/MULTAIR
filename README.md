@@ -69,7 +69,7 @@ MULTAIR: Multipart Upload Layer Transfer Architecture for Intelligent Routing
 
 ## Storage Engines
 
-Multair, like Multer, utilizes storage engines to control where and how uploaded files are stored. Multair provides built-in storage engines and allows you to create custom ones for diverse storage solutions.
+MULTAIR, like Multer, utilizes storage engines to control where and how uploaded files are stored. MULTAIR provides built-in storage engines and allows you to create custom ones for diverse storage solutions.
 
 ### Built-in Storage Engines
 
@@ -89,7 +89,10 @@ The `memoryStorage` engine stores files **directly in memory** as `Buffer` objec
 *   **Small Files:** You are handling relatively small files and are confident that memory usage will remain within acceptable limits for your application.
 *   **Temporary File Handling:** You require temporary storage of files during the request lifecycle, and persistence beyond the request is not needed.
 
-**Critical Warning:**  `memoryStorage` has significant **memory implications**.  Storing large files or handling numerous concurrent uploads **will consume substantial memory** and can lead to **application crashes due to out-of-memory errors**.  **Exercise extreme caution when using `memoryStorage` in production**, especially for applications handling uploads from untrusted sources or potentially large files. It is generally recommended to use `diskStorage` for production environments unless you have carefully assessed and mitigated the memory risks.
+**Critical Warning:**  `memoryStorage` has significant **memory implications**<br />
+Storing large files or handling numerous concurrent uploads **will consume substantial memory** and can lead to **application crashes due to out-of-memory errors**<br />
+**Exercise extreme caution when using `memoryStorage` in production**<br  />
+especially for applications handling uploads from untrusted sources or potentially large files. It is generally recommended to use `diskStorage` for production environments unless you have carefully assessed and mitigated the memory risks.
 
 ### Usage
 
@@ -123,7 +126,8 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
 ```
 
 In this example, when a user uploads a file with the field name avatar, MULTAIR will use memoryStorage to keep the file data in memory. The req.file object in your route handler will then contain the file's information, including the buffer property holding the file's contents.<br />
-The memoryStorage() engine does not accept any configuration options in this version of MULTAIR. To use it, simply call the factory function multair.memoryStorage() without passing any arguments.<br />
+The memoryStorage() engine does not accept any configuration options in this version of MULTAIR<br />
+To use MULTAIR simply call the factory function multair.memoryStorage() without passing any arguments.<br />
 File Information (req.file or elements in req.files) when using memoryStorage
 When memoryStorage is active, the file information object (available via req.file for .single() or within req.files arrays for .array(), .fields(), .any()) will include these properties:
 # Note
