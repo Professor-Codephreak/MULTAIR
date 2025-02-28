@@ -1,5 +1,5 @@
 /**
- * Multair - AI-enhanced file handling middleware for Node.js
+ * Multair - file handling middleware for Node.js
  *
  * (c) 2025 Gregory L. Magnusson
  *
