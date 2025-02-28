@@ -120,21 +120,19 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
 });
 
 // ... (rest of your express application)
-Use code with caution.
-Markdown
-In this example, when a user uploads a file with the field name avatar, Multair will use memoryStorage to keep the file data in memory. The req.file object in your route handler will then contain the file's information, including the buffer property holding the file's contents.
-Options
-The memoryStorage() engine does not accept any configuration options in this version of Multair. To use it, simply call the factory function multair.memoryStorage() without passing any arguments.
+
+In this example, when a user uploads a file with the field name avatar, Multair will use memoryStorage to keep the file data in memory. The req.file object in your route handler will then contain the file's information, including the buffer property holding the file's contents.<br />
+The memoryStorage() engine does not accept any configuration options in this version of Multair. To use it, simply call the factory function multair.memoryStorage() without passing any arguments.<br />
 File Information (req.file or elements in req.files) when using memoryStorage
 When memoryStorage is active, the file information object (available via req.file for .single() or within req.files arrays for .array(), .fields(), .any()) will include these properties:
-Key	Description	Note
-fieldname	Field name from the HTML form	
-originalname	Original filename as provided by the user's browser	Important: Sanitize this value if used in file paths or URLs.
-encoding	Encoding of the file	e.g., '7bit', 'binary'
-mimetype	MIME type of the file	e.g., 'image/jpeg', 'text/plain'
-size	Size of the file in bytes	
-buffer	Buffer object containing the complete file data.	Specific to memoryStorage. Access the file's binary content directly through this property.
-Example req.file object (when using memoryStorage):
+# Note
+fieldname	Field name from the HTML form<br />
+originalname	Original filename as provided by the user's browser	Important: Sanitize this value if used in file paths or URLs<br />
+encoding	Encoding of the file	e.g., '7bit', 'binary<br />
+mimetype	MIME type of the file	e.g., 'image/jpeg', 'text/plain'<br />
+size	Size of the file in bytes<br />
+buffer	Buffer object containing the complete file data.	Specific to memoryStorage. Access the file's binary content directly through this property<br />
+Example req.file object (when using memoryStorage):<br />
 {
   "fieldname": "avatar",
   "originalname": "user-profile.jpg",
