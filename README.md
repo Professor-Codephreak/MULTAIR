@@ -75,13 +75,13 @@ Multair, like Multer, utilizes storage engines to control where and how uploaded
 
 Multair currently includes the following built-in storage engines:
 
-*   [Disk Storage](#storage)
-*   **Memory Storage**
-*   [TCP Server Storage](#storage)
+*   <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/diskstorage.js">Disk Storage</a>
+*   **<a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">Memory Storage</a>**
+*   <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">TCP Server Storage</a>
 
 ---
 
-## Memory Storage `<a name="memorystorage"></a>`
+## <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">Memory Storage</a>
 
 The `memoryStorage` engine stores files **directly in memory** as `Buffer` objects. This engine is best suited for scenarios where:
 
