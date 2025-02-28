@@ -20,9 +20,9 @@ Multair includes these built-in storage engines:
 
 *   **[Disk Storage Engine](./diskstorage.md)**:  The recommended engine for most production environments. Stores files on the local file system, offering configurable destination directories and filename generation. Provides robust and efficient disk-based storage.
 
-*   **[Memory Storage Engine](./memorystorage.md)**:  Stores files directly in memory as `Buffer` objects. Suitable for in-memory processing of smaller files and temporary file handling. **Use with caution in production due to memory limitations.**
+*   **[Memory Storage Engine](./memory.md)**:  Stores files directly in memory as `Buffer` objects. Suitable for in-memory processing of smaller files and temporary file handling. **Use with caution in production due to memory limitations.**
 
-*   **[TCP Server Storage Engine](./tcpserverstorage.md)**: A demonstration engine that streams file data to a remote TCP server. Illustrates network-based storage and custom protocol integration possibilities. **Not production-ready and requires a separate TCP server.**
+*   **[TCP Server Storage Engine](./tcpserver.md)**: A demonstration engine that streams file data to a remote TCP server. Illustrates network-based storage and custom protocol integration possibilities. **Not production-ready and requires a separate TCP server.**
 
 ### Choosing a Storage Engine
 
