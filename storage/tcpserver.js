@@ -1,12 +1,10 @@
 /**
- * Multair - file handling middleware for Node.js, extrapolated and enhancing
- * Busboy and Multer.
- *
- * (c) 2025 Gregory L. Magnusson
+ * Multipart Upload Layer Transfer Architecture for Intelligent Routing
+ * MULTAIR (c) 2025 Gregory L. Magnusson
  *
  * Based on original works:
- * Multer (c) 2014-2021 Hage Yaapa <yaapa@live.com> 
- * Busboy (c) 2010 Benjamin Thomas 
+ * Multer (c) 2014-2021 Hage Yaapa <yaapa@live.com>
+ * Busboy (c) 2010 Benjamin Thomas
  *
  * MIT License
  */
