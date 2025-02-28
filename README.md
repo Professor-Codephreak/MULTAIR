@@ -120,6 +120,7 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
 });
 
 // ... (rest of your express application)
+```
 
 In this example, when a user uploads a file with the field name avatar, Multair will use memoryStorage to keep the file data in memory. The req.file object in your route handler will then contain the file's information, including the buffer property holding the file's contents.<br />
 The memoryStorage() engine does not accept any configuration options in this version of Multair. To use it, simply call the factory function multair.memoryStorage() without passing any arguments.<br />
@@ -133,6 +134,7 @@ mimetype	MIME type of the file	e.g., 'image/jpeg', 'text/plain'<br />
 size	Size of the file in bytes<br />
 buffer	Buffer object containing the complete file data.	Specific to memoryStorage. Access the file's binary content directly through this property<br />
 Example req.file object (when using memoryStorage):<br />
+```json
 {
   "fieldname": "avatar",
   "originalname": "user-profile.jpg",
@@ -155,3 +157,4 @@ Example req.file object (when using memoryStorage):<br />
     ]
   }
 }
+```
