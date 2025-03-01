@@ -32,26 +32,26 @@ app.post('/upload/tcp', multair({
 app.get('/', (req, res) => {
   res.send(`
     <html>
-      <head><title>Multair Example</title></head>
+      <head><title>upload</title></head>
       <body>
         <h1>Upload Form</h1>
 
-        <h2>Upload to Memory</h2>
+        <h2>upload to memory</h2>
         <form method="POST" action="/upload/memory" enctype="multipart/form-data">
           <input type="file" name="avatar_memory"><br><br>
-          <button type="submit">Upload to Memory</button>
+          <button type="submit">upload to Memory</button>
         </form>
 
-        <h2>Upload to Disk</h2>
+        <h2>upload to disk</h2>
         <form method="POST" action="/upload/disk" enctype="multipart/form-data">
           <input type="file" name="avatar_disk"><br><br>
-          <button type="submit">Upload to Disk</button>
+          <button type="submit">upload to Disk</button>
         </form>
 
-        <h2>Upload to TCP Server</h2>
+        <h2>upload to TCP server</h2>
         <form method="POST" action="/upload/tcp" enctype="multipart/form-data">
           <input type="file" name="avatar_tcp"><br><br>
-          <button type="submit">Upload to TCP Server</button>
+          <button type="submit">upload to TCP Server</button>
         </form>
 
       </body>
