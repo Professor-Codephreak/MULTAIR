@@ -61,22 +61,25 @@ app.post('/upload-to-tcp', upload.single('file'), function (req, res, next) {
 });
 ```
 
-In this example, Multair will attempt to establish a TCP connection to the specified server (your-tcp-server-host.com:12345) and stream the uploaded file data over the socket.
-Important: You will need to run a separate TCP server application (like the tcp-server-example.js provided with Multair examples) to receive and handle the incoming TCP data.
-Options
-The multair.tcpserverStorage(options) factory function accepts these options to configure the TCP connection:
-host (string, default: 'localhost'):
-The hostname or IP address of your TCP server.
-port (number, default: 9999):
-The port number that your TCP server is listening on.
-connectTimeout (number, default: 5000 milliseconds):
-The maximum time (in milliseconds) to wait for establishing a TCP connection to the server. If the connection is not established within this timeout, an error will be reported.
-transferTimeout (number, default: 30000 milliseconds):
-The maximum time (in milliseconds) allowed for the entire file transfer to complete after the TCP connection is established. If the transfer takes longer than this timeout, the connection will be terminated, and an error will be reported.
-Security: The example tcpserverStorage does not include any security measures. In a real-world scenario, you would need to implement robust security, such as:
-Encryption: Encrypt TCP communication (e.g., using TLS/SSL or a custom encryption protocol).
-Authentication: Authenticate the Multair client with the TCP server to prevent unauthorized access.
-Authorization: Implement authorization mechanisms on the TCP server to control which clients can upload and manage files.
-Reliability: Network communication is inherently unreliable. For production systems, you would need to add error handling, retry mechanisms, connection pooling, and potentially more sophisticated protocols to ensure reliable file transfer over TCP.
-Custom Protocol Design: For real-world TCP-based file transfer, you would likely design a custom protocol on top of TCP to handle metadata, acknowledgments, error codes, file management commands, and other application-specific requirements. tcpserverStorage provides a basic starting point for this, but a full production solution would require significantly more development.
+In this example, Multair will attempt to establish a TCP connection to the specified server (your-tcp-server-host.com:12345) and stream the uploaded file data over the socket<br />
+Important: You will need to run a separate TCP server application (like the tcp-server-example.js provided with Multair examples) to receive and handle the incoming TCP data<br />
+# configuration
+The multair.tcpserverStorage(options) factory function accepts these options to configure the TCP connection:<br />
+host (string, default: 'localhost'):<br />
+The hostname or IP address of your TCP server<br />
+port (number, default: 9999):<br />
+The port number that your TCP server is listening on<br />
+connectTimeout (number, default: 5000 milliseconds):<br />
+The maximum time (in milliseconds) to wait for establishing a TCP connection to the server. If the connection is not established within this timeout, an error will be reported<br />
+transferTimeout (number, default: 30000 milliseconds):<br />
+The maximum time (in milliseconds) allowed for the entire file transfer to complete after the TCP connection is established. If the transfer takes longer than this timeout, the connection will be terminated, and an error will be reported<br /><br />
+
+Security: tcpserverStorage does not include any security measures. In a real-world scenario, you need to implement robust security and decide what security means to you:<br />
+Encryption: Encrypt TCP communication (e.g., using TLS/SSL or a custom encryption protocol)<br />
+Authentication: Authenticate the Multair client with the TCP server to prevent unauthorized access<br />
+Authorization: Implement authorization mechanisms on the TCP server to control which clients can upload and manage files<br />
+Reliability: Network communication is inherently unreliable<br />
+For production systems you need to add error handling, retry mechanisms, connection pooling, and potentially more sophisticated protocols to ensure reliable file transfer over TCP<br />
+Custom Protocol Design: real-world TCP-based file transfer requires a custom protocol on top of TCP to handle metadata, acknowledgments, error codes, file management commands, and other application-specific requirements. tcpserverStorage provides a basic starting point for this<br />
+Full production requires significantly more development<br />
 tcpserverStorage serves as a valuable example for understanding Multair's storage engine extensibility and exploring network-based file handling. However, remember to address the critical security and reliability considerations before deploying any TCP-based file transfer solution in a production environment.
