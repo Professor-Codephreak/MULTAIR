@@ -128,17 +128,25 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
 For example a participant [uploads] a [file] with the field name [avatar]<br />
 MULTAIR memoryStorage keeps the [file] (data) as [memory]<br />
 req.file object route handler will then contain the file's information including buffer property of file contents<br />
-memoryStorage() engine does not accept any configuration options in MULTAIR v0.0.1<br />
-To use MULTAIR call the factory function multair.memoryStorage()<br />
+```js
+memoryStorage()
+```
+engine does not accept any configuration options in MULTAIR v0.0.1
+
+To use MULTAIR call the factory function
+```js
+multair.memoryStorage()
+```
 function multair.memoryStorage() does not require any arguments<br />
+
 When memoryStorage is active, the file information object (available via req.file for .single() or within req.files arrays for .array(), .fields(), .any()) will include these properties:<br />
 ```txt
-fieldname	from the HTML form<br />
-originalname	Original filename as provided by the user's browser	Important: Sanitize this value if used in file paths or URLs<br />
-encoding	Encoding of the file	e.g., '7bit', 'binary<br />
-mimetype	MIME type of the file	e.g., 'image/jpeg', 'text/plain'<br />
-size	Size of the file in bytes<br />
-buffer	Buffer object containing the complete file data.	Specific to memoryStorage. Access the file's binary content directly through this property<br />
+fieldname	from the HTML form
+originalname	Original filename as provided by the user's browser	Important: Sanitize this value if used in file paths or URLs
+encoding	Encoding of the file	e.g., '7bit', 'binary
+mimetype	MIME type of the file	e.g., 'image/jpeg', 'text/plain'
+size	Size of the file in bytes
+buffer	Buffer object containing the complete file data.	Specific to memoryStorage. Access the file's binary content directly through this property
 ```
 req.file object (when using memoryStorage):example<br />
 ```json
