@@ -82,5 +82,4 @@ Authorization: Implement authorization mechanisms on the TCP server to control w
 Reliability: Network communication is inherently unreliable<br /><br />
 For production systems add error handling, retry mechanisms, connection pooling, and potentially more sophisticated protocols to ensure reliable file transfer over TCP<br />
 Custom Protocol Design: real-world TCP-based file transfer requires a custom protocol on top of TCP to handle metadata, acknowledgments, error codes, file management commands, and other application-specific requirements. tcpserverStorage provides a basic starting point for this<br />
-Full production requires significantly more development<br />
 tcpserverStorage serves as a valuable example for understanding Multair's storage engine extensibility and exploring network-based file handling. However, remember to address the critical security and reliability considerations before deploying any TCP-based file transfer solution in a production environment.
