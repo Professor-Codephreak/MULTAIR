@@ -11,7 +11,7 @@ MULTAIR: Multipart Upload Layer Transfer Architecture for Intelligent Routing
 
 *   **Based on `busboy`:** `multair` leverages the `busboy` library for low-level parsing of `multipart/form-data` requests. `busboy` is known for its performance and stream-based parsing capabilities, which are crucial for handling large file uploads efficiently without excessive memory consumption.
 *   **Stream-Based Processing:**  The entire `multair` pipeline is designed around streams. Incoming request data is streamed to `busboy` for parsing, and file data is further streamed to the configured storage engine. This stream-based approach is fundamental for scalability and memory efficiency, especially when dealing with large files and concurrent uploads.
-*   **Pluggable Storage Engines:**  `multair` adopts a pluggable storage engine architecture, allowing developers to choose from built-in storage options or create custom engines tailored to specific storage requirements. This design promotes flexibility and integration with diverse storage backends.
+*   **Pluggable Storage Engines:**  `multair` adopts a pluggable storage engine architecture, allowing developers to choose from built-in storage options or create custom engines tailored to specific storage requirements. This design promotes flexibility and integration for diverse storage backends.
 
 ## Built-in Storage Engines
 
@@ -32,67 +32,67 @@ MULTAIR: Multipart Upload Layer Transfer Architecture for Intelligent Routing
 
 ## Key Features (Current & Planned)
 
-*   **Multipart Form Parsing:**  Handles `multipart/form-data` requests effectively using `busboy`.
-*   **File Storage Abstraction:**  Pluggable storage engines for flexible file management.
-*   **Built-in Storage Engines:**  Provides `diskStorage`, `memoryStorage`, and `tcpserverStorage` out of the box.
-*   **File Filtering (`fileFilter` option):**  Allows for programmatic filtering of uploaded files based on criteria like MIME type or filename (partially implemented, needs refinement and testing).
-*   **Size Limits (`limits` option):**  Supports configuration of size limits for fields and files to prevent resource exhaustion and denial-of-service attacks (partially implemented, needs full integration and testing).
-*   **Comprehensive File Information:**  Provides detailed file information objects in `req.file` and `req.files`, including metadata and storage-engine specific properties (`buffer`, `path`, etc.).
-*   **Option Validation:**  Includes basic validation of middleware and storage engine options to catch configuration errors early.
+*   **Multipart Form Parsing:**  Handles `multipart/form-data` requests effectively using `busboy`<br />
+*   **File Storage Abstraction:**  Pluggable storage engines for flexible file management<br />
+*   **Built-in Storage Engines:**  Provides `diskStorage`, `memoryStorage`, and `tcpserverStorage` out of the box<br />
+*   **File Filtering (`fileFilter` option):**  Allows for programmatic filtering of uploaded files based on criteria like MIME type or filename (partially implemented, needs refinement and testing)<br />
+*   **Size Limits (`limits` option):**  Supports configuration of size limits for fields and files to prevent resource exhaustion and denial-of-service attacks (partially implemented, needs full integration and testing)<br />
+*   **Comprehensive File Information:**  Provides detailed file information objects in `req.file` and `req.files`, including metadata and storage-engine specific properties (`buffer`, `path`, etc)<br />
+*   **Option Validation:**  Includes basic validation of middleware and storage engine options to catch configuration errors early<br />
 
 ## API Overview
 
-*   **`multair(options)` Middleware Function:**  The main factory function that creates the `multair` middleware. Accepts an `options` object for configuration, including `storage`, `limits`, and `fileFilter`.
-*   **`multair.diskStorage(options)`:** Factory function to create instances of the `diskStorage` engine, configurable with `destination`, `filename`, and `mkdirpOptions`.
-*   **`multair.memoryStorage()`:** Factory function to create instances of the `memoryStorage` engine (currently no options).
-*   **`multair.tcpserverStorage(options)`:** Factory function to create instances of the `tcpserverStorage` engine, configurable with `host`, `port`, `connectTimeout`, and `transferTimeout`.
+*   **`multair(options)` Middleware Function:**  The main factory function that creates the `multair` middleware. Accepts an `options` object for configuration, including `storage`, `limits`, and `fileFilter`<br />
+*   **`multair.diskStorage(options)`:** Factory function to create instances of the `diskStorage` engine, configurable with `destination`, `filename`, and `mkdirpOptions`<br />
+*   **`multair.memoryStorage()`:** Factory function to create instances of the `memoryStorage` engine (currently no options)<br />
+*   **`multair.tcpserverStorage(options)`:** Factory function to create instances of the `tcpserverStorage` engine, configurable with `host`, `port`, `connectTimeout`, and `transferTimeout`<br />
 
 ## Scalability and Enterprise Readiness (Initial Stage)
 
 `multair` is designed with scalability and enterprise integration in mind from the outset.  Key aspects contributing to this goal include:
 
-*   **Stream-Based Architecture:**  Core for handling large uploads and high concurrency efficiently.
-*   **Robust Error Handling:**  Essential for reliable operation in production environments.
-*   **Pluggable Storage:**  Facilitates integration with various enterprise storage solutions, including cloud storage and network-attached storage.
-*   **Configurable Limits:**  Provides security and resource management controls necessary for enterprise deployments.
+*   **Stream-Based Architecture:**  Core for handling large uploads and high concurrency efficiently<br />
+*   **Robust Error Handling:**  Essential for reliable operation in production environments<br />
+*   **Pluggable Storage:**  Facilitates integration with various enterprise storage solutions, including cloud storage and network-attached storage<br />
+*   **Configurable Limits:**  Provides security and resource management controls necessary for enterprise deployments<br />
 
-**Current Limitations and Future Directions:**
+**Current Limitations and Future Directions:**<br />
 
-*   **`fileFilter` and `limits` Refinement:**  The `fileFilter` and `limits` options are in the initial stages of implementation and require further refinement, testing, and documentation.
-*   **Comprehensive Testing:**  More extensive unit and integration tests are needed to ensure robustness and reliability across various scenarios.
-*   **Documentation Expansion:**  Documentation needs to be expanded to cover all features, options, storage engines, and custom engine creation in detail.
-*   **Custom Storage Engine API:**  The API for creating custom storage engines could be further clarified and potentially enhanced with helper classes or interfaces.
-*   **Cloud Storage Integrations:**  Future development could include built-in helper functions or storage engine examples for common cloud storage services (S3, Azure Blob, Google Cloud Storage) to simplify enterprise integrations.
+*   **`fileFilter` and `limits` Refinement:**  The `fileFilter` and `limits` options are in the initial stages of implementation and require further refinement, testing, and documentation<br />
+*   **Comprehensive Testing:**  More extensive unit and integration tests are needed to ensure robustness and reliability across various scenarios<br />
+*   **Documentation Expansion:**  Documentation needs to be expanded to cover all features, options, storage engines, and custom engine creation in detail<br />
+*   **Custom Storage Engine API:**  The API for creating custom storage engines could be further clarified and potentially enhanced with helper classes or interfaces<br />
+*   **Cloud Storage Integrations:**  Future development could include built-in helper functions or storage engine examples for common cloud storage services (S3, Azure Blob, Google Cloud Storage) to simplify enterprise integrations<br />
 
-`multair` is currently under active development and aims to evolve into a production-ready, enterprise-grade file handling middleware for Node.js applications.
+`multair` is currently under active development and aims to evolve into a production-ready, enterprise-grade file handling middleware for Node.js applications<br />
 
 
 ## Storage Engines
 
-MULTAIR, like Multer, utilizes storage engines to control where and how uploaded files are stored. MULTAIR provides built-in storage engines and allows you to create custom ones for diverse storage solutions.
+MULTAIR, like Multer, utilizes storage engines to control where and how uploaded files are stored. MULTAIR provides built-in storage engines and allows you to create custom ones for diverse storage solutions<br />
 
 ### Built-in Storage Engines
 
-Multair currently includes the following built-in storage engines:
+Multair currently incledes the following built-in storage engines:<br />
 
-*   <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/diskstorage.js">Disk Storage</a>
-*   **<a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">Memory Storage</a>**
-*   <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/tcpserver.js">TCP Server Storage</a>
+*   <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/diskstorage.js">Disk Storage</a><br />
+*   **<a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">Memory Storage</a>**<br />
+*   <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/tcpserver.js">TCP Server Storage</a><br />
 
 ---
+<br />
+## <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">Memory Storage</a><br />
+<br />
+The `memoryStorage` engine stores files **directly in memory** as `Buffer` objects. This engine is best suited for scenarios where:<br />
 
-## <a href="https://github.com/Professor-Codephreak/MULTAIR/blob/main/storage/memory.js">Memory Storage</a>
-
-The `memoryStorage` engine stores files **directly in memory** as `Buffer` objects. This engine is best suited for scenarios where:
-
-*   **In-Memory Processing:** You need to immediately process the file data in your application's memory without the overhead of writing to disk. Common use cases include image manipulation, virus scanning, or data transformation pipelines.
-*   **Small Files:** You are handling relatively small files and are confident that memory usage will remain within acceptable limits for your application.
-*   **Temporary File Handling:** You require temporary storage of files during the request lifecycle, and persistence beyond the request is not needed.
+*   **In-Memory Processing:** You need to immediately process the file data in your application's memory without the overhead of writing to disk. Common use cases include image manipulation, virus scanning, or data transformation pipelines<br />
+*   **Small Files:** You are handling relatively small files and are confident that memory usage will remain within acceptable limits for your application<br />
+*   **Temporary File Handling:** You require temporary storage of files during the request lifecycle, and persistence beyond the request is not needed<br />
 
 **Critical Warning:**  `memoryStorage` has significant **memory implications**<br />
 Storing large files or handling numerous concurrent uploads **will consume substantial memory** and can lead to **application crashes due to out-of-memory errors**<br />
 **Exercise extreme caution when using `memoryStorage` in production**<br  />
-especially for applications handling uploads from untrusted sources or potentially large files. It is generally recommended to use `diskStorage` for production environments unless you have carefully assessed and mitigated the memory risks.
+especially for applications handling uploads from untrusted sources or potentially large files. It is generally recommended to use `diskStorage` for production environments unless you have carefully assessed and mitigated the memory risks<br />
 
 ### Usage
 
