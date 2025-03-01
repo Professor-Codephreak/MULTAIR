@@ -1,3 +1,9 @@
+/**
+ * Multipart Upload Layer Transfer Architecture for Intelligent Routing
+ * MULTAIR (c) 2025 Gregory L. Magnusson
+ * MIT License
+ */
+
 const express = require('express');
 const multair = require('../index');
 
