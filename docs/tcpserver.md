@@ -74,12 +74,13 @@ The maximum time (in milliseconds) to wait for establishing a TCP connection to 
 transferTimeout (number, default: 30000 milliseconds):<br />
 The maximum time (in milliseconds) allowed for the entire file transfer to complete after the TCP connection is established. If the transfer takes longer than this timeout, the connection will be terminated, and an error will be reported<br /><br />
 
-Security: tcpserverStorage does not include any security measures. In a real-world scenario, you need to implement robust security and decide what security means to you:<br />
+Security: tcpserverStorage does not include any security measures. real-world scenarios requrie robust security<br />
+decide what security means to you:<br />
 Encryption: Encrypt TCP communication (e.g., using TLS/SSL or a custom encryption protocol)<br />
 Authentication: Authenticate the Multair client with the TCP server to prevent unauthorized access<br />
 Authorization: Implement authorization mechanisms on the TCP server to control which clients can upload and manage files<br />
-Reliability: Network communication is inherently unreliable<br />
-For production systems you need to add error handling, retry mechanisms, connection pooling, and potentially more sophisticated protocols to ensure reliable file transfer over TCP<br />
+Reliability: Network communication is inherently unreliable<br /><br />
+For production systems add error handling, retry mechanisms, connection pooling, and potentially more sophisticated protocols to ensure reliable file transfer over TCP<br />
 Custom Protocol Design: real-world TCP-based file transfer requires a custom protocol on top of TCP to handle metadata, acknowledgments, error codes, file management commands, and other application-specific requirements. tcpserverStorage provides a basic starting point for this<br />
 Full production requires significantly more development<br />
 tcpserverStorage serves as a valuable example for understanding Multair's storage engine extensibility and exploring network-based file handling. However, remember to address the critical security and reliability considerations before deploying any TCP-based file transfer solution in a production environment.
